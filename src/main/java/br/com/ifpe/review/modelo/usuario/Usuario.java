@@ -1,7 +1,5 @@
 package br.com.ifpe.review.modelo.usuario;
 
-
-
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -25,20 +23,15 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Usuario extends EntidadeAuditavel  {
+public class Usuario extends EntidadeAuditavel {
 
-   @Column
-    private String nome;
     @Column
-    private LocalDate dataNascimento;
+    private String nome;
+
     @Column
     private String email;
-    @Column
-    private String foneCelular;
+
     @Column
     private String senha;
-    @Column
-    private String sexo;
-
 
 }
