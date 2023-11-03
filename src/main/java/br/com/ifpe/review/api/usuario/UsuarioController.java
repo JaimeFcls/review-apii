@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ifpe.review.modelo.usuario.Usuario;
@@ -26,6 +27,16 @@ public class UsuarioController {
 
    @Autowired
    private UsuarioService usuarioService;
+    @PostMapping("/login")
+    public ResponseEntity<Usuario> login(@RequestParam String email, @RequestParam String senha) {
+        Usuario usuario = usuarioService.autenticar(email, senha);
+        
+        if (usuario != null) {
+            return ResponseEntity.ok(usuario); // Autenticação bem-sucedida
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // Autenticação falhou
+        }
+    }
 
    @PostMapping
    public ResponseEntity<Usuario> save(@RequestBody UsuarioRequest request) {

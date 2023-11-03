@@ -12,6 +12,18 @@ public class UsuarioService {
 
    @Autowired
    private UsuarioRepository repository;
+   
+   public Usuario autenticar(String email, String senha) {
+       // Busca o usuário pelo email
+       Usuario usuario = repository.findByEmail(email);
+
+       // Verifica se o usuário existe e a senha está correta
+       if (usuario != null && usuario.getSenha().equals(senha)) {
+           return usuario; // Autenticação bem-sucedida
+       }
+
+       return null; // Autenticação falhou
+   }
 
    @Transactional
    public Usuario save(Usuario usuario) {

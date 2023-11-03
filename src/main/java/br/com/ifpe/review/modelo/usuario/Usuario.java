@@ -1,10 +1,11 @@
 package br.com.ifpe.review.modelo.usuario;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Where;
 
@@ -28,10 +29,13 @@ public class Usuario extends EntidadeAuditavel {
     @Column
     private String nome;
 
+    @NotBlank
+    @Email
     @Column
     private String email;
 
     @Column
+    @NotBlank
+    @Size(min = 6)
     private String senha;
-
 }
