@@ -33,6 +33,11 @@ public class ComentarioService {
        // Recupere todos os comentários para o filme específico
        return repository.findByMovieId(movieId);
    }
+   public List<Comentario> findBySerieId(String serieId) {
+
+       // Recupere todos os comentários para o filme específico
+       return repository.findBySerieId(serieId);
+   }
 
    @Transactional
    public void update(Long id, Comentario comentarioAlterado) {

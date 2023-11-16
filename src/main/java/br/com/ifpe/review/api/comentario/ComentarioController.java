@@ -44,10 +44,16 @@ public class ComentarioController {
        return comentarioService.findAll();
    }
 
-   @GetMapping("/{id}")
+   @GetMapping("/filme/{id}")
    public List<Comentario> findByMovieId(@PathVariable String id) {
        // Recupere todos os comentários para o filme específico
        return comentarioService.findByMovieId(id);
+   }
+   
+   @GetMapping("/serie/{id}")
+   public List<Comentario> findBySerieId(@PathVariable String id) {
+       // Recupere todos os comentários para a série específica
+       return comentarioService.findBySerieId(id);
    }
    
    @PutMapping("/{id}")

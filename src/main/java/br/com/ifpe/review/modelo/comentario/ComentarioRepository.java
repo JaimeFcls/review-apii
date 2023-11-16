@@ -9,5 +9,6 @@ import java.util.List;
 public interface ComentarioRepository extends JpaRepository<Comentario, Long> {
 
     List<Comentario> findByMovieId(String movieId); // Adicionando método para encontrar comentários por id do filme
+    List<Comentario> findBySerieId(String serieId);    
 
 }
