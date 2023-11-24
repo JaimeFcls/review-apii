@@ -6,11 +6,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 import org.hibernate.annotations.Where;
 
+import br.com.ifpe.review.modelo.usuario.Usuario;
 import br.com.ifpe.review.util.entity.EntidadeAuditavel;
-import br.com.ifpe.review.modelo.usuario.Usuario; 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,7 +26,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Comentario extends EntidadeAuditavel {
 
-    @Column
+    @Column(length = 1500)
     private String comentar;
 
     @ManyToOne
