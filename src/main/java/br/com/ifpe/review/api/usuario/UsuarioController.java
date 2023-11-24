@@ -32,9 +32,9 @@ public class UsuarioController {
         Usuario usuario = usuarioService.autenticar(email, senha);
         
         if (usuario != null) {
-            return ResponseEntity.ok(usuario); // Autenticação bem-sucedida
+            return ResponseEntity.ok(usuario);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // Autenticação falhou
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); 
         }
     }
 

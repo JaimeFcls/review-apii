@@ -33,10 +33,10 @@ public abstract class EntidadeAuditavel extends EntidadeNegocio {
 
    @JsonIgnore
    @Column
-   private Long criadoPor; // Id do usuário que o criou
+   private Long criadoPor; 
 
    @JsonIgnore
    @Column
-   private Long ultimaModificacaoPor; // Id do usuário que fez a última alteração
+   private Long ultimaModificacaoPor; 
 
 }

@@ -1,8 +1,9 @@
 package br.com.ifpe.review.modelo.comentario;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,12 +31,12 @@ public class ComentarioService {
 
    public List<Comentario> findByMovieId(String movieId) {
 
-       // Recupere todos os comentários para o filme específico
+       
        return repository.findByMovieId(movieId);
    }
    public List<Comentario> findBySerieId(String serieId) {
 
-       // Recupere todos os comentários para o filme específico
+       
        return repository.findBySerieId(serieId);
    }
 
@@ -55,7 +56,6 @@ public class ComentarioService {
        Comentario comentario = repository.findById(id).get();
        comentario.setHabilitado(Boolean.FALSE);
        comentario.setVersao(comentario.getVersao() + 1);
-
        repository.save(comentario);
    }
 

@@ -13,14 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ifpe.review.modelo.comentario.Comentario;
 import br.com.ifpe.review.modelo.comentario.ComentarioService;
-import br.com.ifpe.review.modelo.usuario.Usuario;
 import br.com.ifpe.review.modelo.usuario.UsuarioRepository;
-import br.com.ifpe.review.modelo.usuario.UsuarioService;
 
 @RestController
 @RequestMapping("/api/comentar")
@@ -46,13 +43,13 @@ public class ComentarioController {
 
    @GetMapping("/filme/{id}")
    public List<Comentario> findByMovieId(@PathVariable String id) {
-       // Recupere todos os comentários para o filme específico
+
        return comentarioService.findByMovieId(id);
    }
    
    @GetMapping("/serie/{id}")
    public List<Comentario> findBySerieId(@PathVariable String id) {
-       // Recupere todos os comentários para a série específica
+      
        return comentarioService.findBySerieId(id);
    }
    

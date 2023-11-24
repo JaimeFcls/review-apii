@@ -14,15 +14,15 @@ public class UsuarioService {
    private UsuarioRepository repository;
    
    public Usuario autenticar(String email, String senha) {
-       // Busca o usuário pelo email
+     
        Usuario usuario = repository.findByEmail(email);
 
-       // Verifica se o usuário existe e a senha está correta
+      
        if (usuario != null && usuario.getSenha().equals(senha)) {
-           return usuario; // Autenticação bem-sucedida
+           return usuario; 
        }
 
-       return null; // Autenticação falhou
+       return null; 
    }
 
    @Transactional
