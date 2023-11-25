@@ -1,5 +1,5 @@
 # Use uma imagem base do Java 8
-FROM openjdk:8-jdk-alpine
+FROM openjdk:17-jdk-alpine
 
 # Crie um diretório para armazenar os arquivos temporários da aplicação
 VOLUME /tmp
