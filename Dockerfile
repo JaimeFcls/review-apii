@@ -1,15 +1,11 @@
-FROM ubuntu:latest AS build
+# Use uma imagem base do Java 8
+FROM openjdk:8-jdk-alpine
 
-RUN apt-get update
-RUN apt-get install openjdk-17-jdk -y
-COPY . .
+# Crie um diretório para armazenar os arquivos temporários da aplicação
+VOLUME /tmp
 
-RUN ./gradlew bootJar --no-daemon
+# Copie o arquivo .jar da sua aplicação para a imagem Docker
+COPY target/review-api-0.0.1-SNAPSHOT.jar app.jar
 
-FROM openjdk:17-jdk-slim
-
-EXPOSE 8082
-
-COPY --from=build /build/libs/demo-1.jar app.jar
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Defina o comando de entrada para iniciar a sua aplicação
+ENTRYPOINT ["java","-jar","/app.jar"]
