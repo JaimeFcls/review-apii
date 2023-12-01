@@ -24,7 +24,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Resposta extends EntidadeAuditavel {
+public class Comentario extends EntidadeAuditavel {
 
     @Column(length = 1500)
     private String comentar;

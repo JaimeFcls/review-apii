@@ -15,7 +15,7 @@ public class ComentarioService {
     private ComentarioRepository repository;
 
     @Transactional
-    public Resposta save(Resposta comentario) {
+    public Comentario save(Comentario comentario) {
 
         comentario.setHabilitado(Boolean.TRUE);
         comentario.setVersao(1L);
@@ -23,25 +23,25 @@ public class ComentarioService {
         return repository.save(comentario);
     }
 
-    public List<Resposta> findAll() {
+    public List<Comentario> findAll() {
 
         return repository.findAll();
     }
 
-    public List<Resposta> findByMovieId(String movieId) {
+    public List<Comentario> findByMovieId(String movieId) {
 
         return repository.findByMovieId(movieId);
     }
 
-    public List<Resposta> findBySerieId(String serieId) {
+    public List<Comentario> findBySerieId(String serieId) {
 
         return repository.findBySerieId(serieId);
     }
 
     @Transactional
-    public void update(Long id, Resposta comentarioAlterado) {
+    public void update(Long id, Comentario comentarioAlterado) {
 
-        Resposta comentario = repository.findById(id).get();
+        Comentario comentario = repository.findById(id).get();
         comentario.setComentar(comentarioAlterado.getComentar());
         comentario.setUsuario(comentarioAlterado.getUsuario());
         comentario.setVersao(comentario.getVersao() + 1);
@@ -51,7 +51,7 @@ public class ComentarioService {
     @Transactional
     public void delete(Long id) {
 
-        Resposta comentario = repository.findById(id).get();
+        Comentario comentario = repository.findById(id).get();
         comentario.setHabilitado(Boolean.FALSE);
         comentario.setVersao(comentario.getVersao() + 1);
         repository.save(comentario);

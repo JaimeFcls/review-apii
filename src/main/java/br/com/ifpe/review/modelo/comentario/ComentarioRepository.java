@@ -6,10 +6,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ComentarioRepository extends JpaRepository<Resposta, Long> {
+public interface ComentarioRepository extends JpaRepository<Comentario, Long> {
 
-    List<Resposta> findByMovieId(String movieId);
+    List<Comentario> findByMovieId(String movieId);
 
-    List<Resposta> findBySerieId(String serieId);
+    List<Comentario> findBySerieId(String serieId);
 
 }

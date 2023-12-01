@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.ifpe.review.modelo.comentario.Resposta;
+import br.com.ifpe.review.modelo.comentario.Comentario;
 import br.com.ifpe.review.modelo.comentario.ComentarioService;
 import br.com.ifpe.review.modelo.usuario.UsuarioRepository;
 
@@ -31,30 +31,30 @@ public class ComentarioController {
     private UsuarioRepository usuarioRepository;
 
     @PostMapping
-    public ResponseEntity<Resposta> save(@RequestBody ComentarioRequest request) {
-        Resposta comentario = comentarioService.save(request.build(usuarioRepository));
-        return new ResponseEntity<Resposta>(comentario, HttpStatus.CREATED);
+    public ResponseEntity<Comentario> save(@RequestBody ComentarioRequest request) {
+        Comentario comentario = comentarioService.save(request.build(usuarioRepository));
+        return new ResponseEntity<Comentario>(comentario, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public List<Resposta> findAll() {
+    public List<Comentario> findAll() {
         return comentarioService.findAll();
     }
 
     @GetMapping("/filme/{id}")
-    public List<Resposta> findByMovieId(@PathVariable String id) {
+    public List<Comentario> findByMovieId(@PathVariable String id) {
 
         return comentarioService.findByMovieId(id);
     }
 
     @GetMapping("/serie/{id}")
-    public List<Resposta> findBySerieId(@PathVariable String id) {
+    public List<Comentario> findBySerieId(@PathVariable String id) {
 
         return comentarioService.findBySerieId(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Resposta> update(@PathVariable("id") Long id, @RequestBody ComentarioRequest request) {
+    public ResponseEntity<Comentario> update(@PathVariable("id") Long id, @RequestBody ComentarioRequest request) {
         comentarioService.update(id, request.build(usuarioRepository));
         return ResponseEntity.ok().build();
     }
