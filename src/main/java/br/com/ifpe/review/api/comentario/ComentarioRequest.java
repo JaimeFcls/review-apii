@@ -1,6 +1,6 @@
 package br.com.ifpe.review.api.comentario;
 
-import br.com.ifpe.review.modelo.comentario.Comentario;
+import br.com.ifpe.review.modelo.comentario.Resposta;
 import br.com.ifpe.review.modelo.usuario.Usuario;
 import br.com.ifpe.review.modelo.usuario.UsuarioRepository;
 import lombok.AllArgsConstructor;
@@ -19,13 +19,13 @@ public class ComentarioRequest {
     private String movieId;
     private String serieId;
 
-    public Comentario build(UsuarioRepository usuarioRepository) {
+    public Resposta build(UsuarioRepository usuarioRepository) {
         Usuario usuario = usuarioRepository.findById(usuarioId).orElse(null);
-        return Comentario.builder()
-            .comentar(comentar)
-            .usuario(usuario)
-            .movieId(movieId)
-            .serieId(serieId)
-            .build();
+        return Resposta.builder()
+                .comentar(comentar)
+                .usuario(usuario)
+                .movieId(movieId)
+                .serieId(serieId)
+                .build();
     }
 }

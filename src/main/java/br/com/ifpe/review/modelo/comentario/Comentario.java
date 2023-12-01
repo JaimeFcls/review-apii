@@ -24,19 +24,19 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Comentario extends EntidadeAuditavel {
+public class Resposta extends EntidadeAuditavel {
 
     @Column(length = 1500)
     private String comentar;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    private Usuario usuario; 
+    private Usuario usuario;
 
     @Column
     private String movieId;
 
     @Column
     private String serieId;
-    
+
 }
