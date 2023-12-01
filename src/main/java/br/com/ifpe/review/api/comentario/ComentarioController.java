@@ -15,11 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.ifpe.review.api.resposta.RespostaRequest;
 import br.com.ifpe.review.modelo.comentario.Comentario;
 import br.com.ifpe.review.modelo.comentario.ComentarioService;
-import br.com.ifpe.review.modelo.resposta.Resposta;
-import br.com.ifpe.review.modelo.resposta.RespostaService;
 import br.com.ifpe.review.modelo.usuario.UsuarioRepository;
 
 @RestController
@@ -31,9 +28,6 @@ public class ComentarioController {
     private ComentarioService comentarioService;
 
     @Autowired
-    private RespostaService respostaService;
-
-    @Autowired
     private UsuarioRepository usuarioRepository;
 
     @PostMapping
@@ -41,28 +35,6 @@ public class ComentarioController {
         Comentario comentario = comentarioService.save(request.build(usuarioRepository));
         return new ResponseEntity<Comentario>(comentario, HttpStatus.CREATED);
     }
-    
-    @PostMapping("/comentario/{id}")
-public ResponseEntity<Resposta> saveCommentResponse(@PathVariable Long id, @RequestBody RespostaRequest request) {
-   
-    Comentario comentario = comentarioService.findById(id);
-    
- 
-    if (comentario == null) {
-        return ResponseEntity.notFound().build();
-    }
-    
-   
-    Resposta resposta = request.build(usuarioRepository);
-    
-    
-    resposta.setComentario(comentario);
-    
-  
-    Resposta savedResposta = respostaService.save(resposta);
-    
-    return new ResponseEntity<Resposta>(savedResposta, HttpStatus.CREATED);
-}
 
     @GetMapping
     public List<Comentario> findAll() {

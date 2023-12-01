@@ -28,10 +28,6 @@ public class ComentarioService {
         return repository.findAll();
     }
 
-    public Comentario findById(Long id) {
-        return repository.findById(id).orElse(null);
-    }
-
     public List<Comentario> findByMovieId(String movieId) {
 
         return repository.findByMovieId(movieId);

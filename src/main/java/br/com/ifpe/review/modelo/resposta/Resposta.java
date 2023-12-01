@@ -8,7 +8,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
 
-import br.com.ifpe.review.modelo.comentario.Comentario;
 import br.com.ifpe.review.modelo.usuario.Usuario;
 import br.com.ifpe.review.util.entity.EntidadeAuditavel;
 import lombok.AllArgsConstructor;
@@ -40,15 +39,4 @@ public class Resposta extends EntidadeAuditavel {
     @Column
     private String serieId;
 
-    @ManyToOne
-    @JoinColumn(name = "comentario_id")
-    private Comentario comentario;
-
-    public Comentario getComentario() {
-        return this.comentario;
-    }
-
-    public void setComentario(Comentario comentario) {
-        this.comentario = comentario;
-    }
 }
