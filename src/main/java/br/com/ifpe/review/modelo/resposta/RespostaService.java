@@ -1,46 +1,64 @@
 package br.com.ifpe.review.modelo.resposta;
 
+import java.time.LocalDate;
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.ifpe.review.api.resposta.RespostaRequest;
-import br.com.ifpe.review.modelo.comentario.Comentario;
-import br.com.ifpe.review.modelo.comentario.ComentarioRepository;
-import br.com.ifpe.review.modelo.usuario.Usuario;
-import br.com.ifpe.review.modelo.usuario.UsuarioRepository;
-
-
 @Service
 public class RespostaService {
-    @Autowired
-    private RespostaRepository respostaRepository;
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private RespostaRepository repository;
 
-    @Autowired
-    private ComentarioRepository comentarioRepository;
+    @Transactional
+    public Resposta save(Resposta resposta) {
 
-    public Resposta criarResposta(RespostaRequest request) {
-        // Buscar o usuário e o comentário pelos seus IDs
-        Usuario usuario = usuarioRepository.findById(request.getUsuarioId())
-            .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-        Comentario comentario = comentarioRepository.findById(request.getComentarioId())
-            .orElseThrow(() -> new RuntimeException("Comentário não encontrado"));
-
-        // Criar a nova resposta
-        Resposta resposta = new Resposta();
-        resposta.setUsuario(usuario);
-        resposta.setComentario(comentario);
-        resposta.setTexto(request.getTexto());
-
-        // Salvar a resposta no banco de dados
-        return respostaRepository.save(resposta);
+        resposta.setHabilitado(Boolean.TRUE);
+        resposta.setVersao(1L);
+        resposta.setDataCriacao(LocalDate.now());
+        return repository.save(resposta);
     }
 
-    public List<Resposta> getRespostasPorComentario(Long comentarioId) {
-        return respostaRepository.findByComentarioId(comentarioId);
+    public List<Resposta> findAll() {
+
+        return repository.findAll();
     }
+
+    public Resposta findById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    public List<Resposta> findByMovieId(String movieId) {
+
+        return repository.findByMovieId(movieId);
+    }
+
+    public List<Resposta> findBySerieId(String serieId) {
+
+        return repository.findBySerieId(serieId);
+    }
+
+    @Transactional
+    public void update(Long id, Resposta repostaAlterada) {
+
+        Resposta resposta = repository.findById(id).get();
+        resposta.setTexto(repostaAlterada.getTexto());
+        resposta.setUsuario(repostaAlterada.getUsuario());
+        resposta.setVersao(resposta.getVersao() + 1);
+        repository.save(resposta);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+
+        Resposta resposta = repository.findById(id).get();
+        resposta.setHabilitado(Boolean.FALSE);
+        resposta.setVersao(resposta.getVersao() + 1);
+        repository.save(resposta);
+    }
+
 }
