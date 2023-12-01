@@ -11,52 +11,54 @@ import org.springframework.stereotype.Service;
 @Service
 public class ComentarioService {
 
-   @Autowired
-   private ComentarioRepository repository;
-   
+    @Autowired
+    private ComentarioRepository repository;
 
-   @Transactional
-   public Comentario save(Comentario comentario) {
+    @Transactional
+    public Comentario save(Comentario comentario) {
 
-       comentario.setHabilitado(Boolean.TRUE);
-       comentario.setVersao(1L);
-       comentario.setDataCriacao(LocalDate.now());
-       return repository.save(comentario);
-   }
-   
-   public List<Comentario> findAll() {
+        comentario.setHabilitado(Boolean.TRUE);
+        comentario.setVersao(1L);
+        comentario.setDataCriacao(LocalDate.now());
+        return repository.save(comentario);
+    }
 
-       return repository.findAll();
-   }
+    public List<Comentario> findAll() {
 
-   public List<Comentario> findByMovieId(String movieId) {
+        return repository.findAll();
+    }
 
-       
-       return repository.findByMovieId(movieId);
-   }
-   public List<Comentario> findBySerieId(String serieId) {
+    public Comentario findById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
 
-       
-       return repository.findBySerieId(serieId);
-   }
+    public List<Comentario> findByMovieId(String movieId) {
 
-   @Transactional
-   public void update(Long id, Comentario comentarioAlterado) {
+        return repository.findByMovieId(movieId);
+    }
 
-       Comentario comentario = repository.findById(id).get();
-       comentario.setComentar(comentarioAlterado.getComentar());
-       comentario.setUsuario(comentarioAlterado.getUsuario());
-       comentario.setVersao(comentario.getVersao() + 1);
-       repository.save(comentario);
-   }
+    public List<Comentario> findBySerieId(String serieId) {
 
-   @Transactional
-   public void delete(Long id) {
+        return repository.findBySerieId(serieId);
+    }
 
-       Comentario comentario = repository.findById(id).get();
-       comentario.setHabilitado(Boolean.FALSE);
-       comentario.setVersao(comentario.getVersao() + 1);
-       repository.save(comentario);
-   }
+    @Transactional
+    public void update(Long id, Comentario comentarioAlterado) {
+
+        Comentario comentario = repository.findById(id).get();
+        comentario.setComentar(comentarioAlterado.getComentar());
+        comentario.setUsuario(comentarioAlterado.getUsuario());
+        comentario.setVersao(comentario.getVersao() + 1);
+        repository.save(comentario);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+
+        Comentario comentario = repository.findById(id).get();
+        comentario.setHabilitado(Boolean.FALSE);
+        comentario.setVersao(comentario.getVersao() + 1);
+        repository.save(comentario);
+    }
 
 }

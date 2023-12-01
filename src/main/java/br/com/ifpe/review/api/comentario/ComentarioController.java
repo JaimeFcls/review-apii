@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.com.ifpe.review.modelo.comentario.Comentario;
 import br.com.ifpe.review.modelo.comentario.ComentarioService;
 import br.com.ifpe.review.modelo.usuario.UsuarioRepository;
@@ -24,44 +23,46 @@ import br.com.ifpe.review.modelo.usuario.UsuarioRepository;
 @CrossOrigin
 public class ComentarioController {
 
-   @Autowired
-   private ComentarioService comentarioService;
+    @Autowired
+    private ComentarioService comentarioService;
 
-   @Autowired
-   private UsuarioRepository usuarioRepository;
    
-   @PostMapping
-   public ResponseEntity<Comentario> save(@RequestBody ComentarioRequest request) {
-       Comentario comentario = comentarioService.save(request.build(usuarioRepository));
-       return new ResponseEntity<Comentario>(comentario, HttpStatus.CREATED);
-   }
-   
-   @GetMapping
-   public List<Comentario> findAll() {
-       return comentarioService.findAll();
-   }
 
-   @GetMapping("/filme/{id}")
-   public List<Comentario> findByMovieId(@PathVariable String id) {
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
-       return comentarioService.findByMovieId(id);
-   }
-   
-   @GetMapping("/serie/{id}")
-   public List<Comentario> findBySerieId(@PathVariable String id) {
-      
-       return comentarioService.findBySerieId(id);
-   }
-   
-   @PutMapping("/{id}")
-   public ResponseEntity<Comentario> update(@PathVariable("id") Long id, @RequestBody ComentarioRequest request) {
-       comentarioService.update(id, request.build(usuarioRepository));
-       return ResponseEntity.ok().build();
-   }
+    @PostMapping
+    public ResponseEntity<Comentario> save(@RequestBody ComentarioRequest request) {
+        Comentario comentario = comentarioService.save(request.build(usuarioRepository));
+        return new ResponseEntity<Comentario>(comentario, HttpStatus.CREATED);
+    }
+    
+    @GetMapping
+    public List<Comentario> findAll() {
+        return comentarioService.findAll();
+    }
 
-   @DeleteMapping("/{id}")
-   public ResponseEntity<Void> delete(@PathVariable Long id) {
-       comentarioService.delete(id);
-       return ResponseEntity.ok().build();
-   }
+    @GetMapping("/filme/{id}")
+    public List<Comentario> findByMovieId(@PathVariable String id) {
+
+        return comentarioService.findByMovieId(id);
+    }
+
+    @GetMapping("/serie/{id}")
+    public List<Comentario> findBySerieId(@PathVariable String id) {
+
+        return comentarioService.findBySerieId(id);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Comentario> update(@PathVariable("id") Long id, @RequestBody ComentarioRequest request) {
+        comentarioService.update(id, request.build(usuarioRepository));
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        comentarioService.delete(id);
+        return ResponseEntity.ok().build();
+    }
 }

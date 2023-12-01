@@ -22,10 +22,10 @@ public class ComentarioRequest {
     public Comentario build(UsuarioRepository usuarioRepository) {
         Usuario usuario = usuarioRepository.findById(usuarioId).orElse(null);
         return Comentario.builder()
-            .comentar(comentar)
-            .usuario(usuario)
-            .movieId(movieId)
-            .serieId(serieId)
-            .build();
+                .comentar(comentar)
+                .usuario(usuario)
+                .movieId(movieId)
+                .serieId(serieId)
+                .build();
     }
 }

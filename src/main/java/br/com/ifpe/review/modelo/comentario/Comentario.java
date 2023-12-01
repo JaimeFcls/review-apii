@@ -32,12 +32,12 @@ public class Comentario extends EntidadeAuditavel {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    private Usuario usuario; 
+    private Usuario usuario;
 
     @Column
     private String movieId;
 
     @Column
     private String serieId;
-    
+
 }
