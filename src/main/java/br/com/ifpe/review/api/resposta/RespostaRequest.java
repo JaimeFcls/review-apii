@@ -1,5 +1,7 @@
 package br.com.ifpe.review.api.resposta;
 
+import br.com.ifpe.review.modelo.comentario.Comentario;
+import br.com.ifpe.review.modelo.comentario.ComentarioRepository;
 import br.com.ifpe.review.modelo.resposta.Resposta;
 import br.com.ifpe.review.modelo.usuario.Usuario;
 import br.com.ifpe.review.modelo.usuario.UsuarioRepository;
@@ -21,11 +23,13 @@ public class RespostaRequest {
     private String serieId;
     private String texto;
 
-    public Resposta build(UsuarioRepository usuarioRepository) {
+    public Resposta build(UsuarioRepository usuarioRepository, ComentarioRepository comentarioRepository) {
         Usuario usuario = usuarioRepository.findById(usuarioId).orElse(null);
+        Comentario comentario = comentarioRepository.findById(comentarioId).orElse(null);
         return Resposta.builder()
                 .texto(texto)
                 .usuario(usuario)
+                .comentario(comentario)
                 .movieId(movieId)
                 .serieId(serieId)
                 .build();

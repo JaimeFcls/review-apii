@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.ifpe.review.modelo.comentario.ComentarioRepository;
 import br.com.ifpe.review.modelo.resposta.Resposta;
 import br.com.ifpe.review.modelo.resposta.RespostaService;
 import br.com.ifpe.review.modelo.usuario.UsuarioRepository;
@@ -30,12 +31,12 @@ public class RespostaController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    //@Autowired
-    //private ComentarioRepository comentarioRepository;
+    @Autowired
+    private ComentarioRepository comentarioRepository;
 
     @PostMapping
     public ResponseEntity<Resposta> save(@RequestBody RespostaRequest request) {
-        Resposta resposta = respostaService.save(request.build(usuarioRepository));
+        Resposta resposta = respostaService.save(request.build(usuarioRepository, comentarioRepository));
         return new ResponseEntity<Resposta>(resposta, HttpStatus.CREATED);
     }
     
@@ -58,7 +59,7 @@ public class RespostaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Resposta> update(@PathVariable("id") Long id, @RequestBody RespostaRequest request) {
-        respostaService.update(id, request.build(usuarioRepository));
+        respostaService.update(id, request.build(usuarioRepository, comentarioRepository));
         return ResponseEntity.ok().build();
     }
 
