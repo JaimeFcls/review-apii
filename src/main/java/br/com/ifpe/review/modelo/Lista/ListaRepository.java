@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ListaRepository extends JpaRepository<Lista, Long> {
-    List<Lista> findAll();
+   
 }

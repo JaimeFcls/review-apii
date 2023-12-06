@@ -20,22 +20,19 @@ public class ListaService {
     @Autowired
     private ListaRepository listaRepository;
 
-     @Transactional
+    @Transactional
     public Lista save(Lista lista) {
+        return listaRepository.save(lista);
+    }
 
+    public Lista create(Lista lista) {
         lista.setHabilitado(Boolean.TRUE);
         lista.setVersao(1L);
         lista.setDataCriacao(LocalDate.now());
         return listaRepository.save(lista);
     }
 
-
-    public Lista create(Lista lista) {
-        return listaRepository.save(lista);
-    }
-
-   public List<Lista> findAll() {
-
+    public List<Lista> findAll() {
         return listaRepository.findAll();
     }
     

@@ -22,7 +22,7 @@ import br.com.ifpe.review.modelo.usuario.UsuarioService;
 
 @RestController
 @RequestMapping("/api/usuario")
-@CrossOrigin
+@CrossOrigin(origins = "https://921e-201-76-103-38.ngrok-free.app")
 public class UsuarioController {
 
    @Autowired

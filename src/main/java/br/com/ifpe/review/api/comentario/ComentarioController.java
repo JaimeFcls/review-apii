@@ -21,7 +21,7 @@ import br.com.ifpe.review.modelo.usuario.UsuarioRepository;
 
 @RestController
 @RequestMapping("/api/comentar")
-@CrossOrigin
+@CrossOrigin(origins = "https://921e-201-76-103-38.ngrok-free.app")
 public class ComentarioController {
 
     @Autowired
