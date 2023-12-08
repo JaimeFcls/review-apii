@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.ifpe.review.modelo.Lista.Lista;
 import br.com.ifpe.review.modelo.Lista.ListaService;
-import br.com.ifpe.review.modelo.comentario.Comentario;
+//import br.com.ifpe.review.modelo.comentario.Comentario;
 import br.com.ifpe.review.modelo.usuario.UsuarioRepository;
 
 @RestController
