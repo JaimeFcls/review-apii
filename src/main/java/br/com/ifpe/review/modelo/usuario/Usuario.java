@@ -26,7 +26,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Usuario extends EntidadeAuditavel {
 
-    @Column
+    @Column(length = 21)
     private String nome;
 
     @NotBlank
