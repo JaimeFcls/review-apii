@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.ifpe.review.modelo.comentario.Comentario;
 import br.com.ifpe.review.modelo.comentario.ComentarioRepository;
 import br.com.ifpe.review.modelo.resposta.Resposta;
 import br.com.ifpe.review.modelo.resposta.RespostaService;
@@ -43,6 +44,12 @@ public class RespostaController {
     @GetMapping
     public List<Resposta> findAll() {
         return respostaService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Resposta findById(@PathVariable Long id) {
+
+        return respostaService.findById(id);
     }
 
     @GetMapping("/filme/{id}")
