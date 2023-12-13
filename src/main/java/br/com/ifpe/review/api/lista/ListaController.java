@@ -38,4 +38,11 @@ public class ListaController {
 
         return listaService.findById(id);
     }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        listaService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+    
 }
