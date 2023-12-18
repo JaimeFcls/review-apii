@@ -21,7 +21,7 @@ import br.com.ifpe.review.modelo.usuario.UsuarioRepository;
 
 @RestController
 @RequestMapping("/api/comentar")
-@CrossOrigin
+@CrossOrigin(origins = "https://review-novo-web.vercel.app" )
 public class ComentarioController {
 
     @Autowired

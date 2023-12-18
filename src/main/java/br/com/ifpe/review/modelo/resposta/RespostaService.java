@@ -43,15 +43,13 @@ public class RespostaService {
     }
 
     @Transactional
-    public void update(Long id, Resposta repostaAlterada) {
-
+    public Resposta update(Long id, Resposta repostaAlterada) {
         Resposta resposta = repository.findById(id).get();
         resposta.setTexto(repostaAlterada.getTexto());
         resposta.setUsuario(repostaAlterada.getUsuario());
         resposta.setVersao(resposta.getVersao() + 1);
-        repository.save(resposta);
+        return repository.save(resposta);
     }
-
     @Transactional
     public void delete(Long id) {
 

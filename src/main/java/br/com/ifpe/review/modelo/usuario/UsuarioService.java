@@ -26,7 +26,12 @@ public class UsuarioService {
    }
 
    @Transactional
-   public Usuario save(Usuario usuario) {
+   public Usuario save(Usuario usuario) throws Exception {
+       Usuario existingUser = repository.findByEmail(usuario.getEmail());
+
+       if (existingUser != null) {
+           throw new Exception("Email já em utilização");
+       }
 
        usuario.setHabilitado(Boolean.TRUE);
        usuario.setVersao(1L);

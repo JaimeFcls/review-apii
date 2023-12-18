@@ -23,7 +23,7 @@ import br.com.ifpe.review.modelo.usuario.UsuarioRepository;
 
 @RestController
 @RequestMapping("/api/respostas")
-@CrossOrigin
+@CrossOrigin(origins = "https://review-novo-web.vercel.app")
 public class RespostaController {
 
     @Autowired
@@ -66,10 +66,13 @@ public class RespostaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Resposta> update(@PathVariable("id") Long id, @RequestBody RespostaRequest request) {
-        respostaService.update(id, request.build(usuarioRepository, comentarioRepository));
-        return ResponseEntity.ok().build();
+        Resposta resposta = respostaService.update(id, request.build(usuarioRepository, comentarioRepository));
+        if (resposta != null) {
+            return ResponseEntity.ok(resposta);
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         respostaService.delete(id);

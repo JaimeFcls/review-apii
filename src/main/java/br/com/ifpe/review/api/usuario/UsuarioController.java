@@ -22,7 +22,7 @@ import br.com.ifpe.review.modelo.usuario.UsuarioService;
 
 @RestController
 @RequestMapping("/api/usuario")
-@CrossOrigin
+@CrossOrigin(origins = "https://review-novo-web.vercel.app")
 public class UsuarioController {
 
    @Autowired
@@ -38,13 +38,16 @@ public class UsuarioController {
         }
     }
 
-   @PostMapping
-   public ResponseEntity<Usuario> save(@RequestBody UsuarioRequest request) {
-
-       Usuario usuario = usuarioService.save(request.build());
-       return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED);
-  
-   }
+    @PostMapping
+    public ResponseEntity<?> save(@RequestBody UsuarioRequest request) {
+        try {
+            Usuario usuario = usuarioService.save(request.build());
+            return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED);
+        } catch (Exception e) {
+            
+            return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
    @GetMapping
     public List<Usuario> findAll() {
   

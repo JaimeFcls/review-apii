@@ -13,7 +13,7 @@ import br.com.ifpe.review.modelo.usuario.UsuarioRepository;
 
 @RestController
 @RequestMapping("/api/lista")
-@CrossOrigin
+@CrossOrigin(origins = "https://review-novo-web.vercel.app")
 public class ListaController {
 
     @Autowired
